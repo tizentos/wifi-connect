@@ -37,14 +37,17 @@ class App extends React.PureComponent<{}, AppState> {
           throw new Error();
         }
 
+        console.log(data);
+
         return data.json();
       })
       .then((data: Network[]) => {
         this.setState({ availableNetworks: data });
       })
       .catch((e: Error) => {
-        console.log(e);
-        this.setState({ error: 'Failed to fetch available networks' });
+        this.setState({
+          error: `Failed to fetch available networks. ${e.message || e}`
+        });
       })
       .finally(() => {
         this.setState({
@@ -68,8 +71,9 @@ class App extends React.PureComponent<{}, AppState> {
         }
       })
       .catch((e: Error) => {
-        console.log(e);
-        this.setState({ error: 'Failed to connect to the network.' });
+        this.setState({
+          error: `Failed to connect to the network. ${e.message || e}`
+        });
       })
       .finally(() => {
         this.setState({ isConnecting: false });
@@ -79,16 +83,7 @@ class App extends React.PureComponent<{}, AppState> {
   render() {
     return (
       <Provider>
-        <Navbar
-          brand={
-            <img
-              src={logo}
-              style={{ height: 30 }}
-              className="App-logo"
-              alt="logo"
-            />
-          }
-        />
+        <Navbar brand={<img src={logo} style={{ height: 30 }} alt="logo" />} />
         <Notifications
           isConnecting={this.state.isConnecting}
           hasAvailableNetworks={

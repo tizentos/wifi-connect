@@ -1,13 +1,5 @@
 import * as React from 'react';
-import {
-  Flex,
-  Box,
-  Txt,
-  DropDownButton,
-  Heading,
-  Input,
-  Button
-} from 'rendition';
+import { Flex, Box, Txt, Heading, Input, Button, Select } from 'rendition';
 import { Network, NetworkInfo } from './App';
 import styled from 'styled-components';
 
@@ -57,59 +49,54 @@ export class NetworkInfoForm extends React.PureComponent<
     );
 
     return (
-      <Flex
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        m={3}
-        mt={80}
-      >
-        <Heading.h3 mb={4}>
-          Hi! Please choose your WiFi from the list
-        </Heading.h3>
+      <form onSubmit={this.submit} style={{ width: '100%' }}>
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          m={3}
+          mt={80}
+        >
+          <Heading.h3 mb={4}>
+            Hi! Please choose your WiFi from the list
+          </Heading.h3>
 
-        <Box width={['80%', '60%', '40%']} my={3}>
-          <Txt>SSID</Txt>
-          <DropDownButton
-            width={'100%'}
-            joined
-            label={<Txt>{this.state.formData.ssid || 'Select SSID'}</Txt>}
-          >
-            {this.props.availableNetworks.map(x => (
-              <Button
-                key={x.ssid}
-                plain
-                onClick={() => this.change('ssid', x.ssid)}
-              >
-                {x.ssid}
-              </Button>
-            ))}
-          </DropDownButton>
-        </Box>
-
-        {isSelectedNetworkEnterprise && (
           <Box width={['80%', '60%', '40%']} my={3}>
-            <Txt>User</Txt>
-            <CustomInput
+            <Txt>SSID</Txt>
+            <Select<Network>
               width={'100%'}
-              onChange={e => this.change('identity', e.target.value)}
+              placeholder={'Select SSID'}
+              options={this.props.availableNetworks}
+              valueKey="ssid"
+              labelKey="ssid"
+              onChange={({ option }) => this.change('ssid', option.ssid)}
             />
           </Box>
-        )}
 
-        <Box width={['80%', '60%', '40%']} my={3}>
-          <Txt>Passphrase</Txt>
-          <CustomInput
-            type="password"
-            width={'100%'}
-            onChange={e => this.change('passphrase', e.target.value)}
-          />
-        </Box>
+          {isSelectedNetworkEnterprise && (
+            <Box width={['80%', '60%', '40%']} my={3}>
+              <Txt>User</Txt>
+              <CustomInput
+                width={'100%'}
+                onChange={e => this.change('identity', e.target.value)}
+              />
+            </Box>
+          )}
 
-        <Button primary onClick={this.submit}>
-          Connect
-        </Button>
-      </Flex>
+          <Box width={['80%', '60%', '40%']} my={3}>
+            <Txt>Passphrase</Txt>
+            <CustomInput
+              type="password"
+              width={'100%'}
+              onChange={e => this.change('passphrase', e.target.value)}
+            />
+          </Box>
+
+          <Button type="submit" primary>
+            Connect
+          </Button>
+        </Flex>
+      </form>
     );
   }
 }
