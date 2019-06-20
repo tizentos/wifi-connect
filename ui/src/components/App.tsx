@@ -34,10 +34,9 @@ class App extends React.PureComponent<{}, AppState> {
     fetch('/networks')
       .then(data => {
         if (data.status !== 200) {
+          //TODO: Handle errors better depending on what the server returns.
           throw new Error();
         }
-
-        console.log(data);
 
         return data.json();
       })
@@ -67,6 +66,7 @@ class App extends React.PureComponent<{}, AppState> {
     })
       .then(resp => {
         if (resp.status !== 200) {
+          //TODO: Handle errors better depending on what the server returns.
           throw new Error();
         }
       })

@@ -11,7 +11,8 @@ build: &build
 
     - run: cargo build --release --target=$TARGET
 
-    - run: npm build
+    - run: npm ci
+    - run: npm run build
 
     - run: cross-strip target/$TARGET/release/$BINARY
 

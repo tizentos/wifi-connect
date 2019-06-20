@@ -8,8 +8,13 @@ interface NetworkInfoFormProps {
   onSubmit: (data: NetworkInfo) => void;
 }
 
+interface NetworkInfoFormState {
+  formData: NetworkInfo;
+}
+
 const CustomInput = styled(Input)`
   box-sizing: border-box;
+  border: 1px solid #d1d8f2;
 `;
 
 const isEnterpriseNetwork = (
@@ -28,11 +33,27 @@ const isEnterpriseNetwork = (
 
 export class NetworkInfoForm extends React.PureComponent<
   NetworkInfoFormProps,
-  { formData: NetworkInfo }
+  NetworkInfoFormState
 > {
   state = {
     formData: {} as NetworkInfo
   };
+
+  static getDerivedStateFromProps(
+    nextProps: NetworkInfoFormProps,
+    prevState: NetworkInfoFormState
+  ) {
+    if (!prevState.formData.ssid && nextProps.availableNetworks.length > 0) {
+      return {
+        formData: {
+          ...prevState,
+          ssid: nextProps.availableNetworks[0].ssid
+        }
+      };
+    }
+
+    return null;
+  }
 
   change = (field: string, val: string) => {
     this.setState({ formData: { ...this.state.formData, [field]: val } });
@@ -64,11 +85,17 @@ export class NetworkInfoForm extends React.PureComponent<
           <Box width={['80%', '60%', '40%']} my={3}>
             <Txt>SSID</Txt>
             <Select<Network>
+              emphasized
               width={'100%'}
               placeholder={'Select SSID'}
               options={this.props.availableNetworks}
               valueKey="ssid"
               labelKey="ssid"
+              value={
+                this.props.availableNetworks.find(
+                  network => network.ssid === this.state.formData.ssid
+                ) || 'Select SSID'
+              }
               onChange={({ option }) => this.change('ssid', option.ssid)}
             />
           </Box>
@@ -77,6 +104,7 @@ export class NetworkInfoForm extends React.PureComponent<
             <Box width={['80%', '60%', '40%']} my={3}>
               <Txt>User</Txt>
               <CustomInput
+                emphasized
                 width={'100%'}
                 onChange={e => this.change('identity', e.target.value)}
               />
@@ -86,6 +114,7 @@ export class NetworkInfoForm extends React.PureComponent<
           <Box width={['80%', '60%', '40%']} my={3}>
             <Txt>Passphrase</Txt>
             <CustomInput
+              emphasized
               type="password"
               width={'100%'}
               onChange={e => this.change('passphrase', e.target.value)}
