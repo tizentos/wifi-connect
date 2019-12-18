@@ -1,4 +1,70 @@
 - commits:
+    - subject: Bump rendition and typescript dependencies
+      hash: ce7f9a9e307c27f7a401bf80639eada6d312fc7e
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Stevche Radevski <stevche@balena.io>
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      author: Stevche Radevski
+    - subject: 'Make all inputs emphasized, select network correctly'
+      hash: b6bf6ff2126103258a7e19d4eaba99586c84dad2
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Stevche Radevski <stevche@balena.io>
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      author: Stevche Radevski
+    - subject: 'Upgrade to latest rendition, minor changes based on review'
+      hash: 7b3f26756c2bf04dec3c2b9f0874f5fe6a8fff2e
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Stevche Radevski <stevche@balena.io>
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      author: Stevche Radevski
+    - subject: Upgrade rendition to 8.8.0
+      hash: 2b69d4e87387303510c37b56048caf456deb395a
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Stevche Radevski <stevche@balena.io>
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      author: Stevche Radevski
+    - subject: Prevent source maps from being generated when building UI
+      hash: 10ce3c0a02fbdc8a5801ab943afbf71662400d8a
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Stevche Radevski <stevche@balena.io>
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      author: Stevche Radevski
+    - subject: Fix missing colon
+      hash: 2afa997a6e6f96acb23d8883ea758e0e288b0a7d
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Stevche Radevski <stevche@balena.io>
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      author: Stevche Radevski
+    - subject: Replace UI with React and Rendition
+      hash: caa31f66cc74f85f8e73162aa5e2fb53aab34e82
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Stevche Radevski <stevche@balena.io>
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      author: Stevche Radevski
+  version: 4.3.0
+  date: 2019-12-18T14:35:50.590Z
+- commits:
     - subject: Ignore unmanaged devices
       hash: 131c3a6ed24b5589e916d8b10cf72bb7a8514600
       body: >
