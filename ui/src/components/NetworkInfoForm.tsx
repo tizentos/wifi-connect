@@ -76,7 +76,7 @@ export class NetworkInfoForm extends React.PureComponent<
           alignItems="center"
           justifyContent="center"
           m={3}
-          mt={80}
+          mt={5}
         >
           <Heading.h3 mb={4}>
             Hi! Please choose your WiFi from the list
